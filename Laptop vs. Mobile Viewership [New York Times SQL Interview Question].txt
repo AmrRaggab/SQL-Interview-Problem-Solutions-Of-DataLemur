@@ -1,0 +1,4 @@
+select 
+  count(case when device_type = 'laptop' then device_type end) as laptop_views,
+  count(case when device_type = 'tablet' or device_type = 'phone' then device_type end) as mobile_views
+from viewership

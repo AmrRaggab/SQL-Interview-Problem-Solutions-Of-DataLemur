@@ -1,0 +1,6 @@
+SELECT city ,  count(status) total_orders FROM trades join users 
+on trades.user_id = users.user_id
+where status = 'Completed'
+GROUP BY city  
+ORDER BY total_orders DESC
+LIMIT 3

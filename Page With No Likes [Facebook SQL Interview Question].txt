@@ -1,0 +1,4 @@
+SELECT pages.page_id from pages LEFT JOIN page_likes
+on pages.page_id = page_likes.page_id
+where page_likes.user_id is null
+ORDER BY page_id ASC
