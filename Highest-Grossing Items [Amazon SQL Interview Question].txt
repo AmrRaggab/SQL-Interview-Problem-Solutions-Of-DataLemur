@@ -1,0 +1,10 @@
+with cte as(
+select category ,	product ,	
+sum(spend) total_spend , RANK() OVER(PARTITION BY category ORDER BY sum(spend) desc) as Ranking
+from product_spend
+where EXTRACT(year from transaction_date ) = 2022
+GROUP BY category ,	product
+)
+select category ,	product , total_spend from cte 
+where Ranking <= 2
+ORDER BY category , Ranking
