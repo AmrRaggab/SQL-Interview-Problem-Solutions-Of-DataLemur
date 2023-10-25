@@ -1,0 +1,11 @@
+with cte as(
+SELECT artist_name , DENSE_RANK() OVER(ORDER BY COUNT(songs.song_id) DESC) as artist_rank
+FROM artists join songs 
+on artists.artist_id = songs.artist_id join global_song_rank 
+on global_song_rank.song_id = songs.song_id
+where global_song_rank.rank <=10
+GROUP BY artists.artist_name
+)
+
+select artist_name , artist_rank from cte 
+where artist_rank <= 5
